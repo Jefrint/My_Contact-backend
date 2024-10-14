@@ -6,6 +6,7 @@ const port =process.env.PORT;
 
 app.use(express.json());
 app.use("/api/contacts", require("./routes/contactroutes"))
+app.use('/api/user',require("./routes/userroutes"))
 
 app.use(require("./middleware/errorHandler"))
 

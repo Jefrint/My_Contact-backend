@@ -41,8 +41,26 @@ const getContact =async (req,res)=>{
 
  // @desc update contacts
  //@route Put /get/contacts
- const updateContact = (req,res)=>{
-    res.json({message:`Update Contacts of ${req.params.id}`});
+ const updateContact =async (req,res)=>{
+    const {name,number}=req.body;
+    id=req.params.id
+    if(!name || !id || !number ){
+        res.status(400);
+        throw new Error("all field Mandatory")
+    }
+    try{
+        await pool.query(`UPDATE contacts
+SET  number = ?, 
+    name = ?
+WHERE id = ?;
+`,[number,name,id])
+res.send(`Contact updated for id-${id} to Name-${name} 
+    Number- ${number} `)
+    }
+    catch{
+        res.status(500).send(`Contact not created try again`);    
+    }
+
 }
 
  // @desc delete contacts

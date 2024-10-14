@@ -8,8 +8,6 @@ router.get('/:id',getoneContact)
 
 router.post('/',createContact)
 
-
-
 router.put('/:id',updateContact)
 
  router.delete('/:id',deleteContact)
